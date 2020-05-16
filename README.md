@@ -43,7 +43,11 @@ It would appear the the airflow goes through the filter below where the sensor i
   - measurement times from 5.5msec to 33.7msec (more oversampling for higher accuracy), selectable filtering
   - can be used for indoor navigation, stair detection, drop detection, weather monitoring, etc.
   - I2C/SPI bus interface
-  
+
+## Schematic
+
+*TBD*
+
 ## BTLE Protocol
   
 | Characteristic UUID |  Description  |  Data  | Comments |
