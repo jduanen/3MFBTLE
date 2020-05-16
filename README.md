@@ -1,5 +1,4 @@
-# 3MFBTLE
-3M Filtrete Bluetooth LE Sensor
+# 3MFBTLE: 3M Filtrete Bluetooth LE Sensor
 
 The sensor is a yellow plastic disc attached to filters pairs with Android/iOS app and reports lifetime of filter.
 Senses both elapsed time since installation, and "filter life is determined by measuring changes in pressure that the sensor on the filter detects inside your home, and filter life is based on actual air flow and usage of your heating & cooling system."
