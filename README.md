@@ -9,15 +9,17 @@ See https://www.filtrete.com/3M/en_US/filtrete/about-us/smart-faq/
 
 ### Housing
 
-![Housing External](https://github.com/jduanen/3MFBTLE/images/housing1.jpg
-![Housing Internal](https://github.com/jduanen/3MFBTLE/images/housing2.jpg
+![Housing External](https://github.com/jduanen/3MFBTLE/images/housing1.jpg)
+
+![Housing Internal](https://github.com/jduanen/3MFBTLE/images/housing2.jpg)
 
 ### PCB
 
-![PCB Front](https://github.com/jduanen/3MFBTLE/images/pcb_front.jpg
-![PCB Back](https://github.com/jduanen/3MFBTLE/images/pcb_back.jpg
+![PCB Front](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_front.jpg)
 
-![nRF51802 Schematic](https://github.com/jduanen/3MFBTLE/docs/nrf51802_qcaa_schematic.pdf
+![PCB Back](https://github.com/jduanen/3MFBTLE/images/pcb_back.jpg)
+
+![nRF51802 Schematic](https://github.com/jduanen/3MFBTLE/docs/nrf51802_qcaa_schematic.pdf)
 
 
 ### Components
