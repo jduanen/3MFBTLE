@@ -19,9 +19,7 @@ It would appear the the airflow goes through the filter below where the sensor i
 
 ### PCB
 
-![PCB Front](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_front.jpg)
-
-![PCB Back](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_back.jpg)
+![PCB Top](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_front.jpg)
 
 
 ### Components
@@ -29,6 +27,7 @@ It would appear the the airflow goes through the filter below where the sensor i
 * Coin Battery: 3V
 * nRF51802 QCAA: Nordic Semi Bluetooth Low Energy and 2.4 GHz SoC for cost sensitive applications
   - https://nordicsemi.com/Products/Low-power-short-range-wireless/nRF51802
+  - https://github.com/jduanen/3MFBTLE/blob/master/docs/nrf51802_qcaa_schematic.pdf
   - BTLE 4.2, 256KB Flash, 16KB RAM, M0-Cortex, +4 dBm, AES Encryption, UART, Vdd=1.8V-3V
   - low-cost variant of the nRF51822 (less RX sensitivity, more power)
   - compatible with the S130 Central and Peripheral protocol stack
@@ -36,7 +35,6 @@ It would appear the the airflow goes through the filter below where the sensor i
 * 32.768KHz Xtal: for TOD clock
 * 2SMPB-02B: Omron Digital Barometric Pressure Sensor
   - https:omronfs.omron.com/en_US/ecb/products/pdf/en-2smpb-02b.pdf
-  - https://github.com/jduanen/3MFBTLE/blob/master/docs/nrf51802_qcaa_schematic.pdf
   - high accuracy measurement of barometric pressure and temperature
   - on-board 24b ADC
   - calibration parameters stored in OTP
