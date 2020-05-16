@@ -13,7 +13,7 @@ See https://www.filtrete.com/3M/en_US/filtrete/about-us/smart-faq/
 
 ![Housing Bottom](https://github.com/jduanen/3MFBTLE/blob/master/images/housing2.jpg)
 
-Glued to the upper side of the filter.  Airflow goes through filter first, then past the sensor and into the central air intake.
+The sensor is glued to the upper side of the filter.  Airflow goes through filter first, then past the sensor and into the central air intake.
 The sensor PCB has three small holes next to the pressure sensor.  The rectangular part of the enclosure that attaches to the top of the filter has a rectangular opening above the three PCB holes.  The sensor is glued to the filter with a ring of hot glue that surrounds the rectangular opening.  The disc-shaped part of the enclosure has a U-shaped structure below the three holes in the PCB, and the open end faces a slot in the part of the enclosure that holds the PCB.  This slot faces the semicircular divot in the enclosure.
 It would appear the the airflow goes through the filter below where the sensor is mounted, through the PCB, and is drawn out of the slot and the divot.
 
