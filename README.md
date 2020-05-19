@@ -20,6 +20,8 @@ It would appear the the airflow goes through the filter below where the sensor i
 
 ![PCB Top](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_front.jpg)
 
+![PCB Bottom](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_back.jpg)
+
 ### Components
 
 * Coin Battery: 3V
@@ -72,8 +74,47 @@ It would appear the the airflow goes through the filter below where the sensor i
 
 ![Battery Level](https://github.com/jduanen/3MFBTLE/blob/master/images/3MTBTLE_battery.png)
 
+## Test Pads
+
+There are 10 pogo-pin pads on the top of the PCB, and a set of test pads along the antenna feed line.
+
+The group of four pads closest to the 2SMPB-02B part are arranged in a 2x2 square pattern and are connected to the sensor's SPI bus -- i.e., signals named CSB (pin 2), SDI (pin 3), SCK (pin 4), and SDO (pin 5).  The CSB signal selects the bus mode (i.e., 3-/4-wire SPI or I2C), while the other three pins implement the SPI bus connection between the SoC and the sensor.
+
+| Sensor Pin | SoC Pin |
+| ---------- | ------- |
+| CSB | P0.00 |
+| SDI | P0.02 |
+| SCK | P0.03 |
+| SDO | P0.04 |
+
+The other group of six pads consists of two signals for the serial port, two for the programming port, and a pair that connect to Vcc and GND.  The serial port uses the SoC's pin P0.14 as the Rx signal, and P0.16 as the Tx signal.  The SoC's SWDIO/nRESET and SWCLK pins are used to program the device and these signals are connected to the next pair of pads.
+The SWDIO and SWDCLK pins are used for JTAG debugging and programming the on-chip flash memory.
+
+![PCB Top_Annotated](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_front_annotated.jpg)
+
+On the bottom of the PCB there are six pogo-pin pads and 10 strips that look like the pads for a 10-pin flat-pack part.
+*TBD*
+
+![PCB Bottom_Annotated](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_back_annotated.jpg)
+
+## Serial Port
+
+The pads named *Serial_Tx* and *Serial_Rx* on the schematic are 3V serial connections using P0.14 and P0.16 pins on the nRF51802, respectively.
+
+Connect a 3.3V FTDI USB to serial part up to the Tx and Rx pads, set a terminal emulator to 19200-8-n-1, and type a character and the SoC will prompt with the string: "Waiting for AT."
+
+| AT Command | Response |
+| ---------- | -------- |
+| ATI | 3M Filtrete XXXXXXXXXXX |
+
 ## The Filtrete Android App
 
+The device reverts to it's factory state when power is removed.
+The Android app pairs with the device and apparently initializes it as several values change after pairing.
+
+By enabling Bluetooth HCI snooping on the Android device, it is possible to dump a trace of the BTLE transactions and view them using Wireshark.
+
+The transactions performed on the device by the Android app during the pairing operation include: 
 *TBD*
   
 ## Random Notes and Speculation
@@ -87,3 +128,6 @@ The 3M literature says that the coin battery lasts for a year, and the filters s
 I have two filters in my house and noticed that they both tracked identically from 100% to 10%, despite the fact that the upstairs filter saw significantly greater use than the downstairs one.  This leads me to believe that the first order effect here is time and only if a filter becomes totally clogged will the airflow enter into the lifetime calculation.
 
 It appears that the sensor samples at 60sec intervals -- all of the monotonically increasing counts (that look like timers) that I observed were in multiples of 60.
+
+I think that the Android app sets the date/time of installation and the device counts elapsed seconds.
+
