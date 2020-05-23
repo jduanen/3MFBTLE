@@ -51,24 +51,24 @@ It would appear the the airflow goes through the filter below where the sensor i
 
 ## BTLE Protocol
   
-| Characteristic UUID |  Description  |  Data  | Comments |
-| ------------------- |:-------------:| ------:|:-------- |
-| 00002a19-0000-1000-8000-00805f9b34fb | Battery Level: 100% to 0% | 1B Decimal | Standard Service (see chart below) |
-| 41690001-7276-697a-466c-747253656e73 | Device ID | 6B Hex | D0 6B 88 D1 C0 C6, Looks like BT MAC address |
-| 41690002-7276-697a-466c-747253656e73 | Realtime Clock | 4B Decimal | Looks like TOD in secs |
-| 41690003-7276-697a-466c-747253656e73 | **Unknown** | 16B Hex | All zeros |
-| 41690004-7276-697a-466c-747253656e73 | **Unknown** | 1B Hex | Write-only? |
-| 41690005-7276-697a-466c-747253656e73 | **Unknown** | 6B Hex | 00 0E 10 00 3C |
-| 41690006-7276-697a-466c-747253656e73 | Filter Dimensions | 8B ASCII | "20020010", means 20x20x1 |
-| 41690007-7276-697a-466c-747253656e73 | Filter Model | 6B ASCII | "1900" |
-| 41690008-7276-697a-466c-747253656e73 | Serial Number | 14B ASCII | "638060137512" |
-| 41690009-7276-697a-466c-747253656e73 | **Unknown** | 4B Hex | Looks like monotonic counter, maybe time since install |
-| 4169000a-7276-697a-466c-747253656e73 | Device Name | 16B ASCII | "Filtrete D06B88D" |
-| 4169000b-7276-697a-466c-747253656e73 | **Unknown** | 15B ASCII | "1C0C6", looks like last part of Device ID |
-| 4169000c-7276-697a-466c-747253656e73 | **Unknown** | 2B Hex | 0E 20 |
-| 4169000d-7276-697a-466c-747253656e73 | **Unknown** | 20B Hex | looks like a byte array event count log |
-| 4169000e-7276-697a-466c-747253656e73 | **Unknown** | 14B ASCII | "00000000000000" |
-| 4169000f-7276-697a-466c-747253656e73 | Time and Date string | 20B ASCII | "2018-04-02 20:03:13.", could be time of mfgr. |
+| Characteristic UUID |  Description  |  Name  |  Data  | Comments |
+| ------------------- |:-------------:| ------:| ------:|:-------- |
+| 00002a19-0000-1000-8000-00805f9b34fb | Battery Level: 100% to 0% | ? | 1B Decimal | Standard Service (see chart below) |
+| 41690001-7276-697a-466c-747253656e73 | BTLE MAC Address | ? | 6B Hex | D0 6B 88 D1 C0 C6 |
+| 41690002-7276-697a-466c-747253656e73 | Realtime Clock | ? | 4B Decimal | TOD in secs, POSIX Epoch time format |
+| 41690003-7276-697a-466c-747253656e73 | *Unknown* | ? | 16B Hex | All zeros |
+| 41690004-7276-697a-466c-747253656e73 | *Unknown* | ? | 1B Hex | Write-only? |
+| 41690005-7276-697a-466c-747253656e73 | *Unknown* | ? | 6B Hex | 00 0E 10 00 3C, constant value |
+| 41690006-7276-697a-466c-747253656e73 | Filter Dimensions | SIZE | 8B ASCII | "20020010", means 20x20x1 |
+| 41690007-7276-697a-466c-747253656e73 | Filter Model | MODELNO | 6B ASCII | "1900" |
+| 41690008-7276-697a-466c-747253656e73 | Part Number | UPC | 14B ASCII | "638060137512" |
+| 41690009-7276-697a-466c-747253656e73 | Seconds Since Reset | ? | 4B Hex | monotonic counter, increasing in increments of 60 |
+| 4169000a-7276-697a-466c-747253656e73 | Device Name | ? | 16B ASCII | "Filtrete D06B88D" |
+| 4169000b-7276-697a-466c-747253656e73 | *Unknown* | ? | 15B ASCII | "1C0C6", looks like last part of MAC address, Device ID? |
+| 4169000c-7276-697a-466c-747253656e73 | *Unknown* | ? | 2B Hex | 0E 20, constant value |
+| 4169000d-7276-697a-466c-747253656e73 | *Unknown* | ? | 20B Hex | looks like a byte array event count log |
+| 4169000e-7276-697a-466c-747253656e73 | *Unknown* | ? | 14B ASCII | "00000000000000" |
+| 4169000f-7276-697a-466c-747253656e73 | Time and Date string | ? | 20B ASCII | "2018-04-02 20:03:13.", looks time of mfgr. |
 
 ### Battery Level
 
@@ -106,6 +106,51 @@ Connect a 3.3V FTDI USB to serial part up to the Tx and Rx pads, set a terminal 
 | AT Command | Response |
 | ---------- | -------- |
 | ATI | 3M Filtrete XXXXXXXXXXX |
+
+## Disassembling the Firmware
+
+It is possible to dump the firmware via the (SWCLK/SWDIO) JTAG port using an ST-LinkV2 USB dongle and OpenOCD.
+
+Strings found in the firmware include:
+```
+OK waiting for AT
+OK NAME=%.*s
+OK SKU=%.*s
+OK UPC=%.*s
+OK SIZE=%.*s
+OK LOTNUM=%.*s
+OK MODELNO=%.*s
+ERR register S=%d unknown
+ERR writing to S%d not allowed
+OK writing NAME=%.*s
+ERR invalid NAME=%.*s
+OK writing SKU=%.*s
+ERR invalid SKU=%.*s
+OK writing UPC=%.*s
+ERR invalid UPC=%.*s
+OK writing MODELNO=%.*s
+ERR invalid MODELNO=%.*s
+OK writing SIZE=%.*s
+ERR invalid SIZE=%.*s
+OK writing LOTNO=%.*s
+ERR invalid LOTNO=%.*s
+OK %.*s
+OK init successful. HW=%3d, FW=%3d
+OK 3M Filtrete HW=%3d, FW=%3d
+OK commited to flash
+OK ready to write
+ERR invalid command state (%d)
+
+ Filtrete 000103040506         
+
+ 1500++1602500100051111539378Filtrete                       
+@@@@@@@@@AAAAA@@@@@@@@@@@@@@@@@@
+          
+OK 0x%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X
+INVALID DEVICE NAME
+*B Z
+200200101900  00638060137512Filtrete E2CDFD9EB4CE          000000000000002018-04-02 20:03:13.
+```
 
 ## The Filtrete Android App
 
