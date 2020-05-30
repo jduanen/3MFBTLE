@@ -18,7 +18,7 @@ It would appear the the airflow goes through the filter below where the sensor i
 
 ### PCB
 
-![PCB Top](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_front_annotated.jpg)
+![PCB Top](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_front.jpg)
 
 ![PCB Bottom](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_back.jpg)
 
