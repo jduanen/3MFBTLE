@@ -6,6 +6,8 @@ See https://www.filtrete.com/3M/en_US/filtrete/about-us/smart-faq/
 
 ## Hardware
 
+N.B. As of 2022, there is (at least one) new revision of the PCB. It is marked something like this: 94V-0 MT-JF2. Almost all of the components (as well as the PCB and antenna) have changed. It was to be expected given that the Omron pressure/temperature sensor seems to have been discontinued.
+
 ### Housing
 
 ![Housing Top](https://github.com/jduanen/3MFBTLE/blob/master/images/housing1.jpg)
@@ -35,6 +37,7 @@ It would appear the the airflow goes through the filter below where the sensor i
 * 32.768KHz Xtal: for TOD clock
 * 2SMPB-02B: Omron Digital Barometric Pressure Sensor
   - <https:omronfs.omron.com/en_US/ecb/products/pdf/en-2smpb-02b.pdf>
+  - <https://github.com/jduanen/3MFBTLE/blob/master/docs/en-2smpb-02b.pdf>
   - high accuracy measurement of barometric pressure and temperature
   - on-board 24b ADC
   - calibration parameters stored in OTP
@@ -92,7 +95,7 @@ The SWDIO and SWDCLK pins are used for JTAG debugging and programming the on-chi
 
 ![PCB Top_Annotated](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_front_annotated.jpg)
 
-On the bottom of the PCB there are six pogo-pin pads and 10 strips that look like the pads for a 10-pin flat-pack part.
+On the bottom of the PCB there are six pogo-pin pads and pads for a 10-pin flatpack part.
 *TBD*
 
 ![PCB Bottom_Annotated](https://github.com/jduanen/3MFBTLE/blob/master/images/pcb_back_annotated.jpg)
