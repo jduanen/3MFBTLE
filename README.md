@@ -6,7 +6,7 @@ See https://www.filtrete.com/3M/en_US/filtrete/about-us/smart-faq/
 
 ## Hardware
 
-N.B. As of 2022, there is (at least one) new revision of the PCB. It is marked something like this: 94V-0 MT-JF2. Almost all of the components (as well as the PCB and antenna) have changed. It was to be expected given that the Omron pressure/temperature sensor seems to have been discontinued.
+N.B. As of 2022, there is (at least one) new revision of the PCB. It is marked something like this: 94V-0 MT-JF2. Almost all of the components (as well as the PCB and antenna) have changed. It was to be expected given that the Nordic BTLE processor and the Omron pressure/temperature sensor seems to have been discontinued.
 
 ### Housing
 
